@@ -1,11 +1,27 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+
+app.use(express.json());
+
+let tasks = [];
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Welcome to the Automation First Task Manager!');
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+app.post('/tasks', (req, res) => {
+    const { title } = req.body;
+
+    const newTask = {
+        id: Date.now().toString(),
+        title,
+        completed: false,
+        createdAt: new Date()
+    };
+
+    tasks.push(newTask);
+
+    res.status(201).json(newTask);
 });
+
+module.exports = app;

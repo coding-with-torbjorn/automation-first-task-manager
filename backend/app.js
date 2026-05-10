@@ -27,7 +27,7 @@ app.post('/tasks', (req, res) => {
 
     tasks.push(newTask);
 
-    res.status(201).json(newTask);
+    res.status(201);
 });
 
 module.exports = app;

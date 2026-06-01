@@ -30,4 +30,13 @@ app.post('/tasks', (req, res) => {
     res.status(201).json(newTask);
 });
 
+app.get('/tasks', (req, res) => {
+    res.send(tasks);
+});
+
+app.delete('/tasks', (req, res) => {
+    tasks = [];
+    res.send('Tasks deleted.');
+});
+
 module.exports = app;

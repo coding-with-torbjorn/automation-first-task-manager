@@ -20,6 +20,14 @@ describe('POST /tasks', () => {
 
         expect(response.body.completed).toBe(false);
     });
+
+    test('should throw exception when creating a new task without a title', async () => {
+        const response = await request(app)
+            .post('/tasks')
+            .send({});
+
+        expect(response.statusCode).toBe(400);
+    });
 });
 
 describe('GET /tasks', () => {

@@ -62,14 +62,14 @@ describe('PUT /tasks/:id', () => {
         const updateResponse = await request(app)
             .put(`/tasks/${taskId}`)
             .send({
-                title: 'Updated Task',
-                completed: true
+                newTitle: 'Updated Task',
+                newCompleted: true
             });
 
         // 3. Assertions
         expect(updateResponse.statusCode).toBe(200);
-        expect(updateResponse.body.title).toBe('Updated Task');
         expect(updateResponse.body.completed).toBe(true);
+        expect(updateResponse.body.title).toBe('Updated Task');
     });
 
     //TODO: Add test case for when task does not exist in array

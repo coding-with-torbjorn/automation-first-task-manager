@@ -72,5 +72,16 @@ describe('PUT /tasks/:id', () => {
         expect(updateResponse.body.title).toBe('Updated Task');
     });
 
-    //TODO: Add test case for when task does not exist in array
+    test('should throw exception when updating a task which does not exist', async () => {
+        const putInvalidTaskResponse = await request(app)
+            .put(`/tasks/-999`)
+            .send({
+                newTitle: 'Updated Task',
+                newCompleted: true
+            });
+        
+        expect(putInvalidTaskResponse.statusCode).toBe(404);
+        expect(putInvalidTaskResponse.body.completed).not.toBe(true);
+        expect(putInvalidTaskResponse.body.title).not.toBe('Updated Task');
+    });
 });
